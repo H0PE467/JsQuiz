@@ -4,6 +4,9 @@ var startButton = document.querySelector(".start");
 var timer = document.querySelector(".clock");
 var menuSection = document.querySelector(".startGame");
 var questionSection = document.querySelector(".questions");
+var answerTextBox = document.querySelector(".answerTextBox");
+var answerSubmitButton = document.querySelector(".answerSubmit");
+
 
 
 var questionAsked = document.querySelector(".question");
@@ -13,10 +16,12 @@ var listC = document.querySelector(".optionC");
 var listD = document.querySelector(".optionD");
 
 // Variables
-var seconds = 0;
-var minutes = 5;
+var seconds = 2;
+var minutes = 0;
 var score = 0;
 var currentQuestion = 0;
+var answerToQuestion = "";
+
 
 // Objects with Questions
 let question0 = {
@@ -67,36 +72,59 @@ function displayTimer() {
     }
 }
 
-function updateTimer(){
-    if (seconds == 0) {
-        seconds = 60;
-        minutes--;
-    }
-    seconds--;
-    displayTimer();
-}
-
 function startTimer(event) {
     event.preventDefault();
-    setInterval(updateTimer, 1000);
+    let clockInterval = setInterval(() =>{
+        displayTimer();
+        if (seconds == 0 && minutes == 0) {
+            clearInterval(clockInterval);
+            endgame();
+        }
+        if (seconds == 0) {
+            seconds = 60;
+            minutes--;
+        }
+        seconds--;  
+    }, 1000);
+;
     menuSection.style.display = "none";
     questionSection.style.display = "flex";
-
+    nextQuestion();
 }
 
 function nextQuestion() {
-    next = questions[currentQuestion]
-    
-    questionAsked.textContent = next.question;
-    listA.textContent = next.optionA;
-    listB.textContent = next.optionB;
-    listC.textContent = next.optionC;
-    listD.textContent = next.optionD;
 
-    currentQuestion++;
+    if(currentQuestion==questions.length){
+        endgame();
+    }else{
+        next = questions[currentQuestion]
+    
+        questionAsked.textContent = next.question;
+        listA.textContent = next.optionA;
+        listB.textContent = next.optionB;
+        listC.textContent = next.optionC;
+        listD.textContent = next.optionD;
+        answerToQuestion = next.answer;
+    
+        currentQuestion++;
+    }
 }
 
-nextQuestion();
+function checkAnswer() {
+    if(answerToQuestion == answerTextBox.value){
+        score++;
+    }
+    answerTextBox.value = "";
+    nextQuestion();
+}
+
+function endgame() {
+    
+}
+
 startButton.addEventListener("click", startTimer);
+
+answerSubmitButton.addEventListener("click", checkAnswer)
+
 
 
