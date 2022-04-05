@@ -5,15 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Js Quiz</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/Js/script.js" defer></script>
 </head>
 <body>
-    
+
+    <!-- Reloj  -->
+    <div class="timer">
+        <span>Time</span>
+        <span class="clock">05:00</span>
+    </div>
+
+    <!-- Menu de Inicio -->
+
     <section class="startGame">
-        <h1>Are you ready por a quiz?</h1>
-        <button>Click Me to Start</button>
+        <div class="mainMenu">
+            <h1>Are you ready for a quiz?</h1>
+            <button class="start">Click Me to Start</button>
+        </div>
     </section>
-    <section class=questions></section>
-    <section class="endGame"></section>
+
+
+    <!-- Preguntas -->
+
+    <section class=questions>
+        <div class="center">
+            <h2> ¿Cual sera la pregunta?</h2>
+            <ul>
+                <li><p class="opcionA"></p></li>
+                <li><p class="opcionB"></p></li>
+                <li><p class="opcionC"></p></li>
+                <li><p class="opcionD"></p></li>
+            </ul>
+        </div>
+    </section>
+    <section class="endGame">
+
+    </section>
 
 
 </body>
