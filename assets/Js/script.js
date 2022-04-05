@@ -26,7 +26,7 @@ var currentQuestion = 0;
 var answerToQuestion = "";
 var endGameActive = false;
 
-
+// Previous Quiz Scores
 var scores = [];
 
 
@@ -78,6 +78,7 @@ let question4 = {
 
 let questions = [question0,question1,question2, question3, question4]
 
+//updates the timer with current seconds and minutes
 function displayTimer() {
     if (seconds < 10) {
         if (minutes < 10) {
@@ -97,6 +98,7 @@ function displayTimer() {
     }
 }
 
+//starts the quiz and the timer
 function startTimer(event) {
     event.preventDefault();
     let clockInterval = setInterval(() =>{
@@ -121,6 +123,7 @@ function startTimer(event) {
     nextQuestion();
 }
 
+//displays the nextQuestion or the endgame if there aren´t more questions
 function nextQuestion() {
 
     if(currentQuestion==questions.length){
@@ -139,6 +142,7 @@ function nextQuestion() {
     }
 }
 
+//Updates score if right and reduces time if wrong
 function checkAnswer() {
     if(answerToQuestion == answerTextBox.value.toLowerCase()){
         score++;
@@ -154,6 +158,7 @@ function checkAnswer() {
     nextQuestion();
 }
 
+//shows endgame screen
 function endgame() {
     questionSection.style.display = "none";
     endgameSection.style.display = "flex";
@@ -163,6 +168,7 @@ function endgame() {
 
 }
 
+//displays leaderboard
 function appendPreviousScores(){
     scoreList.innerHTML = "";
     for (i = 0; i < scores.length; i++) {
@@ -173,6 +179,7 @@ function appendPreviousScores(){
     }
 }
 
+//add new score to leaderboard
 function addScore(){
     scores.push(username.value + " " + score)
     localStorage.setItem("scores", JSON.stringify(scores))
@@ -190,7 +197,6 @@ if (localStorage.getItem("scores") != null) {
 
     scores = savedscores;
 }
-
 
 appendPreviousScores();
 
