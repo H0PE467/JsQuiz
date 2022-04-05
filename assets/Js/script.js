@@ -1,4 +1,3 @@
-
 // Document Selectors
 var startButton = document.querySelector(".start");
 var timer = document.querySelector(".clock");
@@ -6,7 +5,11 @@ var menuSection = document.querySelector(".startGame");
 var questionSection = document.querySelector(".questions");
 var answerTextBox = document.querySelector(".answerTextBox");
 var answerSubmitButton = document.querySelector(".answerSubmit");
-
+var endgameSection = document.querySelector(".endGame");
+var scoreList = document.querySelector(".scoreList");
+var scoreSubmit = document.querySelector(".scoreSubmit");
+var username = document.querySelector(".username");
+var finalscore = document.querySelector(".score");
 
 
 var questionAsked = document.querySelector(".question");
@@ -16,11 +19,15 @@ var listC = document.querySelector(".optionC");
 var listD = document.querySelector(".optionD");
 
 // Variables
-var seconds = 2;
-var minutes = 0;
+var seconds = 0;
+var minutes = 5;
 var score = 0;
 var currentQuestion = 0;
 var answerToQuestion = "";
+var endGameActive = false;
+
+
+var scores = [];
 
 
 // Objects with Questions
@@ -77,9 +84,13 @@ function startTimer(event) {
     let clockInterval = setInterval(() =>{
         displayTimer();
         if (seconds == 0 && minutes == 0) {
-            clearInterval(clockInterval);
             endgame();
         }
+
+        if(endGameActive){
+            clearInterval(clockInterval);
+        }
+
         if (seconds == 0) {
             seconds = 60;
             minutes--;
@@ -113,18 +124,58 @@ function nextQuestion() {
 function checkAnswer() {
     if(answerToQuestion == answerTextBox.value){
         score++;
+    }else{
+        if (seconds > 10) {
+            seconds = seconds - 10;
+        }else{
+            minutes = minutes - 1;
+            seconds = seconds + 50;
+        }
     }
     answerTextBox.value = "";
     nextQuestion();
 }
 
 function endgame() {
-    
+    questionSection.style.display = "none";
+    endgameSection.style.display = "flex";
+    finalscore.textContent = score;
+    endGameActive = true;
+
+
+}
+
+function appendPreviousScores(){
+    scoreList.innerHTML = "";
+    for (i = 0; i < scores.length; i++) {
+        var li = document.createElement("li");
+        console.log(li);
+        li.textContent = scores[i];
+        scoreList.appendChild(li);
+    }
+}
+
+function addScore(){
+    scores.push(username.value + " " + score)
+    localStorage.setItem("scores", JSON.stringify(scores))
+    appendPreviousScores();
 }
 
 startButton.addEventListener("click", startTimer);
 
 answerSubmitButton.addEventListener("click", checkAnswer)
+
+scoreSubmit.addEventListener("click",addScore)
+
+if (localStorage.getItem("scores") != null) {
+    var savedscores = JSON.parse(localStorage.getItem("scores"));
+
+    scores = savedscores;
+}
+
+
+appendPreviousScores();
+
 
 
 
