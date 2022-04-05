@@ -19,8 +19,8 @@ var listC = document.querySelector(".optionC");
 var listD = document.querySelector(".optionD");
 
 // Variables
-var seconds = 0;
-var minutes = 5;
+var seconds = 59;
+var minutes = 4;
 var score = 0;
 var currentQuestion = 0;
 var answerToQuestion = "";

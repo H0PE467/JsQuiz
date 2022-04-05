@@ -1,11 +1,41 @@
 body{
-    background-color: rgb(142, 237, 205);
+    background-color: rgb(228, 159, 248);
     margin: 0;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: white;
+    text-align: center;
+}
+
+h1,h2,p,span{
+    text-shadow: 0px 0px 15px #8F35A3;
+
+}
+
+p,span{
+    font-size: 1.5rem;
+}
+
+p{
+    text-align: left;
+}
+
+li{
+    list-style: none;
+}
+
+.score{
+    position: relative;
+    padding-left: 5px;
+}
+
+.total{
+    display: flex;
 }
 
 .timer{
     position: absolute;
     font-size: 24px;
+    padding: 10px;
 }
 
 .startGame{
@@ -18,10 +48,12 @@ body{
 
 .mainMenu{
     text-align: center;
+    font-size: 3rem;
 }
 
 button{
     padding: 1rem 2rem;
+    font-size: 2rem;
 }
 
 .questions{
