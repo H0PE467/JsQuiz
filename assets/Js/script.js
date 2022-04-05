@@ -32,33 +32,51 @@ var scores = [];
 
 // Objects with Questions
 let question0 = {
-    question: 'How much is 2+2?',
-    optionA: 'a) 1',
-    optionB: 'b) 2',
-    optionC: 'c) 3',
-    optionD: 'd) 4',
-    answer: 'd',
+    question: 'Which option is a string?',
+    optionA: 'a) "hello"',
+    optionB: 'b) 5',
+    optionC: 'c) true',
+    optionD: 'd) 0.0258',
+    answer: 'a',
 };
 
 let question1 = {
-    question: 'How much is 2+1?',
-    optionA: 'a) 1',
-    optionB: 'b) 2',
-    optionC: 'c) 3',
-    optionD: 'd) 4',
-    answer: 'c',
-};
-
-let question2 = {
-    question: 'How much is 1+1?',
-    optionA: 'a) 1',
-    optionB: 'b) 2',
-    optionC: 'c) 3',
-    optionD: 'd) 4',
+    question: 'Which word is used in Js to declare a function?',
+    optionA: 'a) funcion',
+    optionB: 'b) function',
+    optionC: 'c) None, you dont need a word',
+    optionD: 'd) def',
     answer: 'b',
 };
 
-let questions = [question0,question1,question2]
+let question2 = {
+    question: 'All functions must have a name',
+    optionA: 'a) true',
+    optionB: 'b) false',
+    optionC: '',
+    optionD: '',
+    answer: 'b',
+};
+
+let question3 = {
+    question: 'What is the difference between a method and a function?',
+    optionA: 'a) a method is faster',
+    optionB: 'b) a function is faster',
+    optionC: 'c) a method needs more space to be stored',
+    optionD: 'd) a method must be inside an object and a function is outside the objects',
+    answer: 'd',
+};
+
+let question4 = {
+    question: 'Which symbol is used for declaring arrays?',
+    optionA: 'a) ()',
+    optionB: 'b) {}',
+    optionC: 'c) []',
+    optionD: 'd) $',
+    answer: 'c',
+};
+
+let questions = [question0,question1,question2, question3, question4]
 
 function displayTimer() {
     if (seconds < 10) {
@@ -122,7 +140,7 @@ function nextQuestion() {
 }
 
 function checkAnswer() {
-    if(answerToQuestion == answerTextBox.value){
+    if(answerToQuestion == answerTextBox.value.toLowerCase()){
         score++;
     }else{
         if (seconds > 10) {
